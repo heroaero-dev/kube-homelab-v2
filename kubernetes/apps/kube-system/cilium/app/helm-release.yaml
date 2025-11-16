@@ -8,7 +8,7 @@ spec:
       chart: cilium
       version: "1.19.0-pre.2"
       sourceRef:
-        kind: HelmRelease
+        kind: HelmRepository
         name: cilium
         namespace: kube-system
   interval: 1h
