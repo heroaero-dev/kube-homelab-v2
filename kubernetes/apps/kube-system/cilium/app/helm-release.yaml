@@ -4,15 +4,20 @@ metadata:
   name: cilium
   namespace: kube-system
 spec:
+  interval: 1h
+
   chart:
     spec:
       chart: cilium
-      version: "1.19.0-pre.2"
+      version: "1.18.0"
       sourceRef:
         kind: HelmRepository
         name: cilium
         namespace: flux-system
-  interval: 1h
+
+  install:
+    createNamespace: false
+
   values:
     autoDirectNodeRoutes: true
 
@@ -28,7 +33,6 @@ spec:
 
     bpfClockProbe: true
 
-    # Turn BGP OFF for now
     bgpControlPlane:
       enabled: false
 
@@ -43,9 +47,6 @@ spec:
     dashboards:
       enabled: true
 
-    # REMOVE devices: bond+ unless you actually have bond interfaces
-    # devices: bond+
-
     enableIPv4BIGTCP: true
 
     endpointRoutes:
@@ -55,19 +56,18 @@ spec:
       enabled: false
 
     hubble:
-      enabled: false   # can turn on later
+      enabled: false
 
     ipam:
       mode: kubernetes
 
     ipv4NativeRoutingCIDR: 10.42.0.0/16
 
-    # IMPORTANT: update these two
-    k8sServiceHost: 10.6.6.116   # e.g. 10.6.1.35
+    k8sServiceHost: 10.6.6.116
     k8sServicePort: 6443
 
     kubeProxyReplacement: true
-    kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+    kubeProxyReplacementHealthzBindAddr: "0.0.0.0:10256"
 
     l2announcements:
       enabled: false
@@ -99,6 +99,7 @@ spec:
         trustCRDsExist: true
 
     rollOutCiliumPods: true
+
     routingMode: native
 
     securityContext:
