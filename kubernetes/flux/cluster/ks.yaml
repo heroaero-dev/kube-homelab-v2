@@ -4,17 +4,53 @@ metadata:
   name: cluster-apps
   namespace: flux-system
 spec:
-  interval: 30m0s
-  # dependsOn:
-  # - name: infra-configs
-  retryInterval: 1m
-  timeout: 5m
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: ./kubernetes/apps
-  prune: true
   decryption:
     provider: sops
     secretRef:
       name: sops-age
+  deletionPolicy: WaitForTermination
+  interval: 1h
+  path: ./kubernetes/apps
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  wait: false
+
+  patches:
+    - patch: |-
+        apiVersion: kustomize.toolkit.fluxcd.io/v1
+        kind: Kustomization
+        metadata:
+          name: _
+        spec:
+          decryption:
+            provider: sops
+            secretRef:
+              name: sops-age
+          deletionPolicy: WaitForTermination
+          patches:
+            - patch: |-
+                apiVersion: helm.toolkit.fluxcd.io/v2
+                kind: HelmRelease
+                metadata:
+                  name: _
+                spec:
+                  install:
+                    crds: CreateReplace
+                    remediation:
+                      retries: 3
+                  upgrade:
+                    crds: CreateReplace
+                    remediation:
+                      retries: 3
+                  rollback:
+                    cleanupOnFail: true
+              target:
+                group: helm.toolkit.fluxcd.io
+                kind: HelmRelease
+      target:
+        group: kustomize.toolkit.fluxcd.io
+        kind: Kustomization
+
