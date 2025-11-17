@@ -13,7 +13,7 @@ spec:
             - name: renovate
               image: renovate/renovate:latest
               args:
-                - heroaero-dev/HomeLab
+                - heroaero-dev/kube-homelab-v2
 
               envFrom:
                 - secretRef:
