@@ -1,0 +1,23 @@
+set shell := ["bash", "-euo", "pipefail", "-c"]
+
+k3s:
+    curl -sfL https://get.k3s.io | sh - \
+      #INSTALL_K3S_EXEC="server --flannel-backend=none --disable-kube-proxy --disable servicelb --disable-network-policy --disable traefik" sh -
+
+kubeconfig:
+    mkdir -p ~/.kube
+    sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+    sudo chown "$USER:$USER" ~/.kube/config
+
+cilium:
+    KUBECONFIG=~/.kube/config helmfile -f helmfile.d/01-cilium.yaml apply
+
+flux:
+    KUBECONFIG=~/.kube/config flux bootstrap github \
+      --token-auth \
+      --owner=heroaero-dev \
+      --repository=kube-homelab-v2 \
+      --branch=main \
+      --path=kubernetes/flux/cluster \
+      --personal
+
