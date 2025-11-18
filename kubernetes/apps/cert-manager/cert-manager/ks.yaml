@@ -11,10 +11,6 @@ spec:
   interval: 1h
   path: ./kubernetes/apps/cert-manager/cert-manager/app
   prune: true
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
   sourceRef:
     kind: GitRepository
     name: flux-system
