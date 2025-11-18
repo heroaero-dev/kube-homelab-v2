@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: homepage
 spec:
-  type: CLusterIP
+  type: ClusterIP
   selector:
     app: homepage
   ports:
