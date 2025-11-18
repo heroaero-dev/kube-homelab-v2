@@ -9,6 +9,8 @@ spec:
       app: homepage
   template:
     metadata:
+      labels:
+        app: homepage        
     spec:
       containers:
       - env:
@@ -36,3 +38,4 @@ spec:
         persistentVolumeClaim:
           claimName: homepage-claim1
           readOnly: true
+
