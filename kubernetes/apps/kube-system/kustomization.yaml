@@ -4,3 +4,4 @@ namespace: kube-system
 resources:
   - ./namespace.yaml
   - ./ci-access/ks.yaml
+  - ./reloader/ks.yaml
