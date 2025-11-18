@@ -7,9 +7,6 @@ spec:
   path: ./kubernetes/apps/renovate/renovate/app
   prune: true
   decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
   sourceRef:
     kind: GitRepository
     name: flux-system
