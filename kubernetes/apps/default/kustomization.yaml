@@ -7,3 +7,4 @@ resources:
   - ./plex/ks.yaml
   - ./mealie/ks.yaml
   - ./linkding/ks.yaml
+  - ./homepage/ks.yaml
