@@ -21,9 +21,9 @@ spec:
       ingressClassName: traefik
       hosts:
         - host: port.heroaero.dev
-      paths:
-        - path: /
-          port: 9000
+          paths:
+            - path: /
+              port: 9000
       tls:
         - hosts:
             - portainer.heroaero.dev
