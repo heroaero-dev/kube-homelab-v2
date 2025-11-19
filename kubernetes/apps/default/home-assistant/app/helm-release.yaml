@@ -11,61 +11,20 @@ spec:
 
   values:
 
-    controllers:
-      home-assistant:
-        type: statefulset
+    image:
+      repository: ghcr.io/home-operations/home-assistant
+      tag: 2025.11.2@sha256:ff7eb7c296bb514704804a6d68d67e6858edb4366ee38d1c3089e837230a9172
 
-        pod:
-          initContainers:
-            - name: fix-permissions
-              image: busybox
-              command:
-                - sh
-                - -c
-                - |
-                  mkdir -p /config/.venv
-                  mkdir -p /config/.storage
-                  mkdir -p /config/deps
-                  chown -R 1000:1000 /config
-              securityContext:
-                runAsUser: 0
-                runAsGroup: 0
-              volumeMounts:
-                - name: config
-                  mountPath: /config
-                - name: config-cache
-                  mountPath: /config/.venv
+    env:
+      TZ: America/New_York
+      HASS_HTTP_TRUSTED_PROXY_1: 10.6.6.0/24
+      HASS_HTTP_TRUSTED_PROXY_2: 10.42.0.0/16
 
-        annotations:
-          reloader.stakater.com/auto: "true"
-
-        containers:
-          app:
-            image:
-              repository: ghcr.io/home-operations/home-assistant
-              tag: 2025.11.2@sha256:ff7eb7c296bb514704804a6d68d67e6858edb4366ee38d1c3089e837230a9172
-            env:
-              TZ: America/New_York
-              HASS_HTTP_TRUSTED_PROXY_1: 10.6.6.0/24
-              HASS_HTTP_TRUSTED_PROXY_2: 10.42.0.0/16
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
-              capabilities:
-                drop: ["ALL"]
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 2Gi
-
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
+    resources:
+      requests:
+        cpu: 10m
+      limits:
+        memory: 2Gi
 
     service:
       app:
