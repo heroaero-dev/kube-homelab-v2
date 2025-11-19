@@ -9,37 +9,31 @@ spec:
     name: home-assistant
   values:
 
-    defaultPodOptions:
-      initContainers:
-        - name: fix-permissions
-          image: busybox
-          command:
-            - sh
-            - -c
-            - |
-              echo "Fixing HA PVC permissions..."
-              mkdir -p /config/.venv
-              mkdir -p /config/.storage
-              mkdir -p /config/deps
-              chown -R 1000:1000 /config
-          securityContext:
-            runAsUser: 0
-            runAsGroup: 0
-          volumeMounts:
-            - name: config
-              mountPath: /config
-            - name: config-cache
-              mountPath: /config/.venv
-
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
-
     controllers:
       home-assistant:
+
+        pod:
+          initContainers:
+            - name: fix-permissions
+              image: busybox
+              command:
+                - sh
+                - -c
+                - |
+                  echo "Fixing HA PVC permissions..."
+                  mkdir -p /config/.venv
+                  mkdir -p /config/.storage
+                  mkdir -p /config/deps
+                  chown -R 1000:1000 /config
+              securityContext:
+                runAsUser: 0
+                runAsGroup: 0
+              volumeMounts:
+                - name: config
+                  mountPath: /config
+                - name: config-cache
+                  mountPath: /config/.venv
+
         annotations:
           reloader.stakater.com/auto: "true"
 
@@ -57,13 +51,23 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
-              capabilities: { drop: ["ALL"] }
+              capabilities:
+                drop:
+                  - ALL
 
             resources:
               requests:
                 cpu: 10m
               limits:
                 memory: 2Gi
+
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
 
     service:
       app:
@@ -83,12 +87,12 @@ spec:
 
     persistence:
       config:
-        existingClaim: "{{ .Release.Name }}"
+        existingClaim: home-assistant
         globalMounts:
           - path: /config
 
       config-cache:
-        existingClaim: "{{ .Release.Name }}-cache"
+        existingClaim: home-assistant-cache
         globalMounts:
           - path: /config/.venv
 
