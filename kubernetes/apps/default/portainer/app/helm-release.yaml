@@ -12,3 +12,21 @@ spec:
         name: portainer
       version: 2.33.3
   interval: 10m0s
+  values:
+    service:
+      type: ClusterIP
+      httpPort: 9000
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      hosts:
+        - host: port.heroaero.dev
+      paths:
+        - path: /
+          port 9000
+      tls:
+        - hosts:
+            - portainer.heroaero.dev
+          secretName: portainer-tls
+      annotations:
+       cert-manager.io/cluster-issuer: letsencrypt-prod 
