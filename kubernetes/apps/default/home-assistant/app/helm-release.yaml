@@ -8,30 +8,38 @@ spec:
     kind: OCIRepository
     name: home-assistant
   values:
+
+    defaultPodOptions:
+      initContainers:
+        - name: fix-permissions
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Fixing HA PVC permissions..."
+              mkdir -p /config/.venv
+              mkdir -p /config/.storage
+              mkdir -p /config/deps
+              chown -R 1000:1000 /config
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: config-cache
+              mountPath: /config/.venv
+
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+
     controllers:
       home-assistant:
-
-        initContainers:
-          fix-permissions:
-            image: busybox
-            command:
-              - sh
-              - -c
-              - |
-                echo "Fixing HA PVC permissions..."
-                mkdir -p /config/.venv
-                mkdir -p /config/.storage
-                mkdir -p /config/deps
-                chown -R 1000:1000 /config
-            securityContext:
-              runAsUser: 0
-              runAsGroup: 0
-            volumeMounts:
-              - name: config
-                mountPath: /config
-              - name: config-cache
-                mountPath: /config/.venv
-
         annotations:
           reloader.stakater.com/auto: "true"
 
@@ -56,13 +64,6 @@ spec:
                 cpu: 10m
               limits:
                 memory: 2Gi
-
-    securityContext:
-      runAsNonRoot: true
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
-      fsGroupChangePolicy: OnRootMismatch
 
     service:
       app:
