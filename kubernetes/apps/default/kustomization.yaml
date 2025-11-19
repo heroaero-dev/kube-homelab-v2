@@ -8,3 +8,4 @@ resources:
   - ./mealie/ks.yaml
   - ./linkding/ks.yaml
   - ./homepage/ks.yaml
+  - ./home-assistant/ks.yaml
