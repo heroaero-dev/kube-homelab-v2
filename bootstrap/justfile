@@ -11,7 +11,7 @@ cert-manager:
     KUBECONFIG=~/.kube/config helmfile -f helmfile.d/00-cert-manager-crds.yaml apply
 secret:
     kubectl create namespace external-secrets
-    kubectl create secret generic sops-age --from-file=~/age.agekey -n external-secrets
+    kubectl create secret generic sops-age --from-file=$HOME/age.agekey -n external-secrets
 flux:
     KUBECONFIG=~/.kube/config flux bootstrap github \
       --token-auth \
