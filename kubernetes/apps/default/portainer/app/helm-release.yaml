@@ -30,3 +30,10 @@ spec:
           secretName: portainer-tls
       annotations:
        cert-manager.io/cluster-issuer: letsencrypt-prod 
+    persistence:
+      enabled: true
+      existingClaim: "{{ .Release.Name }}"
+      size: 10Gi
+      storageClass: longhorn
+      accessMode: ReadWriteOnce
+
