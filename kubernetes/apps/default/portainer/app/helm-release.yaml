@@ -26,7 +26,7 @@ spec:
               port: 9000
       tls:
         - hosts:
-            - portainer.heroaero.net
+            - port.heroaero.net
           secretName: portainer-tls
       annotations:
        cert-manager.io/cluster-issuer: letsencrypt-prod 
