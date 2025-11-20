@@ -20,13 +20,13 @@ spec:
       enabled: true
       ingressClassName: traefik
       hosts:
-        - host: port.heroaero.dev
+        - host: port.heroaero.net
           paths:
             - path: /
               port: 9000
       tls:
         - hosts:
-            - portainer.heroaero.dev
+            - portainer.heroaero.net
           secretName: portainer-tls
       annotations:
        cert-manager.io/cluster-issuer: letsencrypt-prod 
