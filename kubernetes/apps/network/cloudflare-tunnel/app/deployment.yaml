@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment 
 metadata:
   name: cloudflared
-  #annotations:
-   # reloader.stakater.com/auto: "true"
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 2
   selector:
@@ -24,7 +24,7 @@ spec:
           image: cloudflare/cloudflared:latest
           envFrom:
             - secretRef:
-                name: cloudflared-secret 
+                name: cloudflared
           command:
             # configures tunnel run paramaters
             - cloudflared
@@ -64,7 +64,7 @@ data:
   config.yaml: |
     ingress:
       - hostname: link.heroaero.net
-        service: http://linkding25.linkding25.svc.cluster.local
+        service: http://linkding.default.svc.cluster.local:80
       - hostname: plex.heroaero.net
-        service: http://plex.default.svc.cluster.local
+        service: http://plex.default.svc.cluster.local:80
       - service: http_status:404
