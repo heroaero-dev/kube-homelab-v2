@@ -65,6 +65,6 @@ data:
     ingress:
       - hostname: link.heroaero.net
         service: http://linkding.default.svc.cluster.local:80
-      - hostname: plex.heroaero.net
+      - hostname: plex.heroaero.dev
         service: http://plex.default.svc.cluster.local:80
       - service: http_status:404
