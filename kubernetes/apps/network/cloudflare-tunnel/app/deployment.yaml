@@ -69,4 +69,6 @@ data:
         service: http://plex.default.svc.cluster.local:32400
       - hostname: mealie.heroaero.dev
         service: http://mealie.default.svc.cluster.local:9001
+      - hostname: heroaero.dev
+        service: http://homepage.default.svc.cluster.local:3000
       - service: http_status:404
