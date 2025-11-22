@@ -10,10 +10,10 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-      - home.heroaero.dev
+      - heroaero.dev
       secretName: homepage-tls 
   rules:
-    - host: home.heroaero.dev
+    - host: heroaero.dev
       http:
         paths:
           - backend:
