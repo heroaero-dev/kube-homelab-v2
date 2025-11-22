@@ -2,6 +2,7 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: autoscaler
+  namespace: default
 spec:
   scaleTargetRef:
     name: plex
@@ -9,14 +10,14 @@ spec:
     kind: Deployment
   minReplicaCount: 1
   maxReplicaCount: 5
-  cooldownPeriod: 60   # how long until scale down
+  cooldownPeriod: 60
   triggers:
     - type: cpu
+      metricType: Utilization
       metadata:
-        metricType: Utilization
-        value: "75"      # scale if CPU > 75%
+        value: "75"
     - type: memory
+      metricType: Utilization
       metadata:
-        metricType: Utilization
-        value: "80"      # scale if RAM > 80%
+        value: "80"
 
