@@ -64,7 +64,7 @@ data:
   config.yaml: |
     ingress:
       - hostname: link.heroaero.dev
-        service: http://linkding.default.svc.cluster.local:6767
+        service: http://traefik.kube-system.svc.cluster.local:80
       - hostname: plex.heroaero.dev
         service: http://traefik.kube-system.svc.cluster.local:80
       - hostname: mealie.heroaero.dev
