@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: observability
 components:
   - ../../components/alerts
+  - ../../components/nfs-scaler
 resources:
   - ./namespace.yaml
   - ./keda/ks.yaml
