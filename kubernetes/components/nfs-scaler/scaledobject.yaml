@@ -1,0 +1,22 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: ${APP}-autoscaler
+spec:
+  scaleTargetRef:
+    name: ${APP}
+    apiVersion: apps/v1
+    kind: Deployment
+  minReplicaCount: 1
+  maxReplicaCount: 5
+  cooldownPeriod: 60   # how long until scale down
+  triggers:
+    - type: cpu
+      metadata:
+        type: Utilization
+        value: "75"      # scale if CPU > 75%
+    - type: memory
+      metadata:
+        type: Utilization
+        value: "80"      # scale if RAM > 80%
+
