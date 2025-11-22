@@ -1,38 +1,31 @@
 # 📦 kube-homelab-v2
 
-A fully refactored, IaC, GitOps-driven Kubernetes homelab.
+[![Website](https://img.shields.io/badge/Visit-heroaero.dev-0A0A0A?style=for-the-badge&logo=firefox)](https://heroaero.dev)
 
-This repository contains the second-generation architecture of my Kubernetes homelab.  
-After several months of hands-on learning and experimenting with FluxCD, Helm, Kustomize, and GitOps patterns, I decided to rebuild the structure from the ground up to follow a cleaner, more modular, and industry-standard layout.
 
----
+# 🛠️ Homelab DevOps Progress Tracker
 
-## 🎯 Goals of this repository
+This repository tracks my journey in learning and applying **DevOps engineering** practices through hands-on homelab projects.
 
-- declarative GitOps deployments  
-- Kubernetes best practices  
-- clean separation of apps, infrastructure, and platform services  
-- easier debugging and upgrades  
-- long-term maintainability  
+## 🧠 Background
 
----
+I started with **Docker Swarm**, but after running into its limitations, I transitioned to using **Kubernetes** — specifically a **3-node K3s cluster** with one manager node. This move helped me understand container orchestration at a deeper level.
 
-## 🔥 Why this repo exists (v2)
+## 🚀 Current Goals
 
-My previous repo served its purpose, but as I adopted more real GitOps patterns and larger tools  
-(Flux, External Secrets, KEDA, Longhorn, Cloudflared, Prometheus, etc.),  
-the structure became harder to maintain and troubleshoot.
+- Deploy and manage my own containers and pods using **official documentation** only
+- Avoid using tutorials to build self-reliance and deepen understanding
+- Maintain all stack configurations, manifests, and infra as code in this repository
 
-This new repo:
+## 📦 Current Setup
 
-- follows a clean **OneDr0p-style layout**  
-- separates **apps**, **infrastructure**, and **platform controllers**  
-- eliminates **recursive / double Kustomization builds**  
-- avoids **duplicate resources and namespace conflicts**  
-- uses **stable namespace boundaries**  
-- supports **layering (base → overlays)** without issues  
-- works smoothly with **FluxCD**  
+- **K3s**: Lightweight Kubernetes for managing multi-node infrastructure
+- **Thinkpad E14**: My mobile workstation for testing, live debugging, and on-the-go infrastructure adjustments.
+- **Tailscale + Cloudflare Tunnel**: For secure remote access
 
+## 🧾 Notes
+
+Everything here reflects real mistakes, learning, and iteration — this repo isn't polished for show, it's built for growth. 💪
 ---
 
 ## 🛠️ GitOps Pipeline
