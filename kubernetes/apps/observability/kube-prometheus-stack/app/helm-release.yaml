@@ -25,6 +25,11 @@ spec:
           kind: PrometheusRule
   values:
     grafana:
+      enabled: true
+      admin:
+        existingSecret: grafana-admin-creds
+        userKey: adming-user
+        passwordKey: admin-password
       adminPassword: aero
       ingress:
         enabled: true
