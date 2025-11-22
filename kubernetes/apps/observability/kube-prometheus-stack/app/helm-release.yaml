@@ -8,7 +8,6 @@ spec:
     spec:
       chart: kube-prometheus-stack
       version: "79.5.0"
-      # version: "58.x"
       sourceRef:
         kind: HelmRepository
         name: kube-prometheus-stack
@@ -21,7 +20,6 @@ spec:
   driftDetection:
     mode: enabled
     ignore:
-      # Ignore "validated" annotation which is interested during install
       - paths: ["/metadata/annotation/prometheus-operator-validated"]
         target:
           kind: PrometheusRule
@@ -31,11 +29,12 @@ spec:
       ingress:
         enabled: true
         ingressClassName: traefik
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/acme-challenge-type: "http01"
         hosts:
-          - graf.heroaero.com
-        ## Secret must be manually created in the namespace
-        ##
+          - graf.heroaero.info
         tls:
-         - secretName: grafana-tls-secret
-           hosts:
-           - graf.heroaero.com
+          - secretName: grafana-tls
+            hosts:
+              - graf.heroaero.info
