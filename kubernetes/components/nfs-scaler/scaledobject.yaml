@@ -1,10 +1,10 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: ${APP}-autoscaler
+  name: autoscaler
 spec:
   scaleTargetRef:
-    name: ${APP}
+    name: plex
     apiVersion: apps/v1
     kind: Deployment
   minReplicaCount: 1
