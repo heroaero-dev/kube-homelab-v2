@@ -25,12 +25,13 @@ spec:
           kind: PrometheusRule
   values:
     grafana:
+      podAnnotations:
+        reloader.stakater.com/auto: "true"
       enabled: true
       admin:
         existingSecret: grafana-admin-creds
-        userKey: adming-user
+        userKey: admin-user
         passwordKey: admin-password
-      adminPassword: aero
       ingress:
         enabled: true
         ingressClassName: traefik
