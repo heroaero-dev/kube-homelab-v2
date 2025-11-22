@@ -28,27 +28,7 @@ data:
         header: true
         style: row
         columns: 4
-      DNS:
-        header: true
-        style: row
-        columns: 4
-      Network:
-        header: true
-        style: row
-        columns: 4
-      Remote Access:
-        header: true
-        style: row
-        columns: 4
-      Storage:
-        header: true
-        style: row
-        columns: 4
       Media:
-        header: true
-        style: row
-        columns: 4
-      Home Automation:
         header: true
         style: row
         columns: 4
@@ -65,16 +45,11 @@ data:
             icon: mealie.svg
             href: https://mealie.heroaero.dev
             description: k8s
-    - DNS:
-    - Network:
-    - Storage:
     - Media:
         - Plex:
             icon: plex.svg
             href: https://plex.heroaero.dev
             description: media server
-    - Remote Access:
-    - Home Automation:
     - Other:
         - GitHub:
             icon: github.svg
