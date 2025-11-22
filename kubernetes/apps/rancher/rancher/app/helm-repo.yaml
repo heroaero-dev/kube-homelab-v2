@@ -3,5 +3,5 @@ kind: HelmRepository
 metadata:
   name: rancher
 spec:
-  interval: 1m
+  interval: 10m
   url: https://releases.rancher.com/server-charts/stable

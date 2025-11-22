@@ -28,5 +28,5 @@ spec:
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 
       tls:
-        source: letsEncrypt
+        source: secret
         secretName: tls-rancher
