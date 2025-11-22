@@ -21,6 +21,13 @@ spec:
       containers:
         - image: linuxserver/plex:1.42.2
           name: plex
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 2000m
+              memory: 4Gi
           securityContext:
             allowPrivilegeEscalation: false
           volumeMounts:
