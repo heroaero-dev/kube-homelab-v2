@@ -73,4 +73,6 @@ data:
         service: http://homepage.default.svc.cluster.local:3000
       - hostname: graf.heroaero.info
         service: http://traefik.kube-system.svc.cluster.local:80
+      - hostname: ranch.heroaero.dev
+        service: http://traefik.kube-system.svc.cluster.local:80
       - service: http_status:404
