@@ -7,6 +7,4 @@ resources:
   - ./deployment.yaml
   - ./service.yaml
   - ./ingress.yaml
-postBuild:
-  substitute:
-    APP: plex
+  - ./autoscaler.yaml
