@@ -64,9 +64,6 @@ spec:
             - mountPath: /app/config/bookmarks.yaml
               name: homepage
               subPath: bookmarks.yaml
-            - mountPath: /app/config/docker.yaml
-              name: homepage
-              subPath: docker.yaml
             - mountPath: /app/config/kubernetes.yaml
               name: homepage
               subPath: kubernetes.yaml
