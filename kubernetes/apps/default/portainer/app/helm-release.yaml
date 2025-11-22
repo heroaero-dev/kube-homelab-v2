@@ -32,7 +32,7 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt-prod 
     persistence:
       enabled: true
-      existingClaim: "{{ .Release.Name }}"
+      existingClaim: portainer
       size: 10Gi
       storageClass: longhorn
       accessMode: ReadWriteOnce
