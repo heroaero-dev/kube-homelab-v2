@@ -28,6 +28,17 @@ spec:
       podAnnotations:
         reloader.stakater.com/auto: "true"
       enabled: true
+      serviceAccount:
+        create: true
+      persistence:
+        enabled: true
+        type: pvc
+        size: 5Gi
+      sidecar:
+        dashboards:
+          enabled: true
+        datasources:
+          enabled: true
       admin:
         existingSecret: grafana-admin-creds
         userKey: admin-user
