@@ -6,12 +6,11 @@ k3s:
     mkdir -p ~/.kube
     sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
     sudo chown "$USER:$USER" ~/.kube/config
+    sudo chmod 644 /etc/rancher/k3s/k3s.yaml
 
 crds:
     KUBECONFIG=~/.kube/config helmfile -f helmfile.d/00-crds.yaml apply
 secret:
-    kubectl create namespace external-secrets
-    kubectl create namespace observability
     kubectl create secret generic sops-age --from-file=$HOME/age.agekey -n external-secrets
     kubectl create secret generic sops-age --from-file=$HOME/age.agekey -n observability
 flux:
