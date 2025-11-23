@@ -7,9 +7,24 @@ k3s:
     sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
     sudo chown "$USER:$USER" ~/.kube/config
     sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+    export KUBECONFIG=.kube/config
 crds:
-    kubectl create namespace longhorn-system
-    helmfile apply helmfile.d/
+    # Create namespace if missing
+    kubectl create namespace longhorn-system --dry-run=client -o yaml | kubectl apply -f -
+
+    # Download longhornctl if not already installed
+    if ! command -v longhornctl >/dev/null 2>&1; then \
+        curl -sL https://github.com/longhorn/cli/releases/latest/download/longhornctl-linux-amd64 -o longhornctl; \
+        chmod +x longhornctl; \
+        sudo mv longhornctl /usr/local/bin/longhornctl; \
+    fi
+
+    # Run Longhorn preflight
+    longhornctl install preflight
+
+    # Apply CRDs
+    helmfile -f helmfile.d/ apply
+
 secret:
     kubectl create secret generic sops-age --from-file=$HOME/age.agekey -n external-secrets
     kubectl create secret generic sops-age --from-file=$HOME/age.agekey -n observability
