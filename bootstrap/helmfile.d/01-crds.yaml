@@ -1,0 +1,18 @@
+helmDefaults:
+  wait: true
+  timeout: 300
+
+repositories:
+  - name: external-secrets
+    url: https://charts.external-secrets.io/
+
+releases:
+  - name: external-secrets
+    namespace: external-secrets
+    chart: external-secrets/external-secrets
+    version: 1.1.0  
+    installed: true
+    createNamespace: true
+    values:
+      - installCRDs: true
+
