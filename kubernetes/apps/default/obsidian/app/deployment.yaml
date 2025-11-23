@@ -28,8 +28,8 @@ spec:
               value: "America/Los_Angeles"
           volumeMounts:
             - name: obsidian
-              path: /config
-        volumes:
-          - name: obsidian
-            persistentVolumeClaim:
-              claimName: obsidian
+              mountPath: /config
+      volumes:
+        - name: obsidian
+          persistentVolumeClaim:
+            claimName: obsidian
