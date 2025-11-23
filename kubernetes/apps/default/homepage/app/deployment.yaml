@@ -34,11 +34,11 @@ spec:
               value: "heroaero.dev,www.heroaero.dev,localhost,127.0.0.1"
           resources:
             requests:
-              cpu: 50m
-              memory: 128Mi
+              cpu: 25m
+              memory: 64Mi
             limits:
-              cpu: 500m
-              memory: 512Mi
+              cpu: 200m
+              memory: 256Mi
           ports:
             - containerPort: 3000
               name: http
