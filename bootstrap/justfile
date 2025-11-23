@@ -8,10 +8,12 @@ k3s:
     sudo chown "$USER:$USER" ~/.kube/config
 
 cert-manager:
-    KUBECONFIG=~/.kube/config helmfile -f helmfile.d/00-cert-manager-crds.yaml apply
+    KUBECONFIG=~/.kube/config helmfile -f helmfile.d/00-crds.yaml apply
 secret:
     kubectl create namespace external-secrets
+    kubectl create namespace observability
     kubectl create secret generic sops-age --from-file=$HOME/age.agekey -n external-secrets
+    kubectl create secret generic sops-age --from-file=$HOME/age.agekey -n observability
 flux:
     KUBECONFIG=~/.kube/config flux bootstrap github \
       --token-auth \
