@@ -1,0 +1,56 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app cloudflare-dns
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: cloudflare-dns
+
+  values:
+    # Use the same name everywhere
+    fullnameOverride: *app
+
+    provider:
+      name: cloudflare
+
+    env:
+      - name: CF_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-dns-secret
+            key: CF_API_TOKEN
+
+      - name: CF_ZONE_ID
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-dns-secret
+            key: CF_ZONE_ID
+
+    extraArgs:
+      - --cloudflare-proxied
+      - --zone-id-filter=$(CF_ZONE_ID)
+      - --cloudflare-dns-records-per-page=1000
+      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+      - --crd-source-kind=DNSEndpoint
+
+    triggerLoopOnEvent: true
+    policy: sync
+
+    # The type of DNS objects to watch
+    sources:
+      - crd
+
+    domainFilters:
+      - heroaero.dev
+
+    txtOwnerId: default
+    txtPrefix: k8s.
+
+    serviceMonitor:
+      enabled: true
+
+    podAnnotations:
+      secret.reloader.stakater.com/reload: cloudflare-dns-secret
+
