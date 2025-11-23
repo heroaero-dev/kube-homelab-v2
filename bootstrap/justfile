@@ -7,7 +7,7 @@ k3s:
     sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
     sudo chown "$USER:$USER" ~/.kube/config
 
-cert-manager:
+crds:
     KUBECONFIG=~/.kube/config helmfile -f helmfile.d/00-crds.yaml apply
 secret:
     kubectl create namespace external-secrets
