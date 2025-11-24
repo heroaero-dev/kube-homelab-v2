@@ -4,8 +4,6 @@ services:
     image: vaultwarden/server:testing-alpine
     ports:
       - 8089:80
-    env_file:
-      - .env
     volumes:
       - ./.vw-data:/data
     restart: unless-stopped
@@ -13,5 +11,5 @@ services:
       - homelab
   
 networks:
-  warden:
+  homelab:
     driver: bridge
