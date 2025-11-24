@@ -24,9 +24,9 @@ spec:
       servicePort: 80
 
       extraAnnotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
+        cert-manager.io/cluster-issuer: letsencrypt-production
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 
       tls:
         source: secret
-        secretName: tls-rancher
+        secretName: rancher-tls
