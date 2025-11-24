@@ -5,7 +5,8 @@ services:
     ports:
       - 8089:80
     volumes:
-      - ./.vw-data:/data
+      - /srv/docker/vaultwarden/data:/data
+
     restart: unless-stopped
     networks:
       - homelab
