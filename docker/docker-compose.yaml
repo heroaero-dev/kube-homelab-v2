@@ -1,0 +1,17 @@
+services:
+  warden:
+    container_name: vaultwarden
+    image: vaultwarden/server:testing-alpine
+    ports:
+      - 8089:80
+    env_file:
+      - .env
+    volumes:
+      - ./.vw-data:/data
+    restart: unless-stopped
+    networks:
+      - homelab
+  
+networks:
+  warden:
+    driver: bridge

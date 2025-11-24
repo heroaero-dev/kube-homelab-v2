@@ -1,0 +1,15 @@
+services:
+  obsidian:
+    image: linuxserver/obsidian:1.10.3
+    ports:
+      - 3004:3000
+      - 3003:3001
+    networks:
+      - homelab
+    volumes:
+      - /srv/docker/obsidian:/config
+    restart: unless-stopped
+networks:
+  homelab:
+    driver: bridge
+    attachable: true 
