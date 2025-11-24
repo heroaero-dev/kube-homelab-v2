@@ -8,4 +8,4 @@ spec:
     app: obsidian
   ports:
     - port: 3001
-      targetPort: 3000
+      targetPort: 3001
