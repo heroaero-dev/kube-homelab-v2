@@ -4,4 +4,3 @@ namespace: network
 resources:
   - ./namespace.yaml
   - ./cloudflare-tunnel/ks.yaml
-  - ./cloudflare-dns/ks.yaml
