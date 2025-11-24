@@ -79,4 +79,6 @@ data:
         service: http://traefik.kube-system.svc.cluster.local:80     
       - hostname: md.heroaero.dev
         service: http://10.6.6.116:3004
+      - hostname: vault.heroaero.dev
+        service: http://10.6.6.116:8089
       - service: http_status:404
