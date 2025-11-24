@@ -7,3 +7,4 @@ resources:
   - ./namespace.yaml
   - ./keda/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
+  - ./blackbox-exporter/ks.yaml
