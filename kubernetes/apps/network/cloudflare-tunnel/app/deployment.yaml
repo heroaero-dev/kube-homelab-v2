@@ -78,5 +78,5 @@ data:
       - hostname: port.heroaero.dev
         service: http://traefik.kube-system.svc.cluster.local:80     
       - hostname: md.heroaero.dev
-        service: https://obsidian.default.svc.cluster.local:3001
+        service: http://obsidian.default.svc.cluster.local:3001
       - service: http_status:404
