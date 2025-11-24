@@ -40,11 +40,24 @@ data:
   custom.js: ""
   bookmarks.yaml: ""
   services.yaml: |
+    - Monitoring:
+        - kube-prometheus-stack:
+            icon: grafana.svg
+            href: https://graf.heroaero.info
+            description: cluster metrics & alerting
     - Containers:
+        - Vaultwarden:
+            icon: vaultwarden.svg
+            href: https://vault.heroaero.dev
+            description: password manager
         - Mealie:
             icon: mealie.svg
             href: https://mealie.heroaero.dev
-            description: k8s
+            description: recipe manager
+        - Obsidian:
+            icon: obsidian.svg
+            href: https://md.heroaero.dev
+            description: note taking app
     - Media:
         - Plex:
             icon: plex.svg
