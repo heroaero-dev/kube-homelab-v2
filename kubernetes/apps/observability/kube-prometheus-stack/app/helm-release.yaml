@@ -2,8 +2,9 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
+  namespace: observability
 spec:
-  interval: 30m 
+  interval: 30m
   chart:
     spec:
       chart: kube-prometheus-stack
@@ -12,20 +13,23 @@ spec:
         kind: HelmRepository
         name: kube-prometheus-stack
         namespace: observability
-      interval: 12h 
+      interval: 12h
+
   install:
     crds: Create
   upgrade:
     crds: CreateReplace
+
   driftDetection:
     mode: enabled
     ignore:
       - paths: ["/metadata/annotation/prometheus-operator-validated"]
         target:
           kind: PrometheusRule
+
   values:
     alertmanager:
-      alertmanagerSpec:
+      config:
         alertmanagerConfigSelector:
           matchLabels:
             alertmanagerConfig: enabled
@@ -33,18 +37,20 @@ spec:
           matchLabels:
             alertmanagerConfig: enabled
     grafana:
+      enabled: true
       podAnnotations:
         reloader.stakater.com/auto: "true"
-      enabled: true
+
       serviceAccount:
         create: true
+
       persistence:
         enabled: true
         type: pvc
         accessModes:
           - ReadWriteOnce
         size: 5Gi
-        storageClassName: longhorn       
+        storageClassName: longhorn
         finalizers:
           - kubernetes.io/pvc-protection
 
@@ -53,10 +59,12 @@ spec:
           enabled: true
         datasources:
           enabled: true
+
       admin:
         existingSecret: grafana-admin-creds
         userKey: admin-user
         passwordKey: admin-password
+
       ingress:
         enabled: true
         ingressClassName: traefik
