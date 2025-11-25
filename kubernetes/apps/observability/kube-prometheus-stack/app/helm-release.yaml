@@ -29,7 +29,7 @@ spec:
 
   values:
     alertmanager:
-      config:
+      alertmanagerSpec:
         alertmanagerConfigSelector:
           matchLabels:
             alertmanagerConfig: enabled
