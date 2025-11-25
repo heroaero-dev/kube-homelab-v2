@@ -77,7 +77,7 @@ data:
       - hostname: port.heroaero.dev
         service: http://traefik.kube-system.svc.cluster.local:80     
       - hostname: md.heroaero.dev
-        service: http://10.6.6.116:3004
+        service: http://traefik.kube-system.svc.cluster.local:80
       - hostname: vault.heroaero.dev
         service: http://10.6.6.116:8089
       - hostname: jelly.heroaero.dev
