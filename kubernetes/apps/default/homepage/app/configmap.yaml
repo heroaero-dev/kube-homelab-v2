@@ -12,7 +12,7 @@ data:
     title: homelab
 
     background:
-      image: https://cdnb.artstation.com/p/assets/images/images/006/897/659/large/mikael-gustafsson-wallpaper-mikael-gustafsson.jpg
+      image: https://cdnb.artstation.com/p/assets/images/images/074/065/791/large/sylvain-sarrailh-sylvainsarrailh-dragonball-tribute.jpg
       blur: sm # sm, md, xl... see https://tailwindcss.com/docs/backdrop-blur
       saturate: 100 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
       brightness: 50 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
@@ -59,9 +59,9 @@ data:
             href: https://md.heroaero.dev
             description: note taking app
     - Media:
-        - Plex:
-            icon: plex.svg
-            href: https://plex.heroaero.dev
+        - Jellyfin:
+            icon: jellyfin.svg
+            href: https://jelly.heroaero.dev
             description: media server
     - Other:
         - GitHub:
