@@ -24,6 +24,14 @@ spec:
         target:
           kind: PrometheusRule
   values:
+    alertmanager:
+      alertmanagerSpec:
+        alertmanagerConfigSelector:
+          matchLabels:
+            alertmanagerConfig: enabled
+        alertmanagerConfigNamespaceSelector:
+          matchLabels:
+            alertmanagerConfig: enabled
     grafana:
       podAnnotations:
         reloader.stakater.com/auto: "true"
