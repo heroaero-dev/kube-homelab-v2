@@ -1,4 +1,4 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
+helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: rancher
@@ -15,18 +15,25 @@ spec:
       interval: 1h
   values:
     replicaCount: 2
+
     hostname: ranch.heroaero.dev
+
     ingress:
       enabled: true
       ingressClassName: traefik
-      pathType: ImplementationSpecific
-      path: "/"
-      servicePort: 80
+
+      path: /
+      pathType: Prefix
+
+      servicePort: 443   # ← IMPORTANT FIX
 
       extraAnnotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
 
       tls:
         source: secret
         secretName: rancher-tls
+
