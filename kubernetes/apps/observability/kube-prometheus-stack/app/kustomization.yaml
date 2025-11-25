@@ -4,4 +4,6 @@ resources:
   - ./secret.yaml
   - ./helm-repo.yaml
   - ./helm-release.yaml
+  - ./external-secret.yaml
   - ./scrapeconfig.yaml
+  - ./alertmanagerconfig.yaml
