@@ -15,24 +15,17 @@ spec:
       interval: 1h
   values:
     replicaCount: 2
-
     hostname: ranch.heroaero.dev
-
     ingress:
       enabled: true
       ingressClassName: traefik
-
       path: /
       pathType: Prefix
-
-      servicePort: 443   # ← IMPORTANT FIX
-
+      servicePort: 80
       extraAnnotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
-        
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
-
       tls:
         source: secret
         secretName: rancher-tls
