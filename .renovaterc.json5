@@ -22,6 +22,9 @@
 
   dependencyDashboardTitle: "Renovate Dashboard 🤖",
 
+  // THIS IS THE MISSING PIECE
+  dependencyDashboardApproval: true,
+
   suppressNotifications: [
     "prEditedNotification",
     "prIgnoreNotification"
@@ -44,4 +47,3 @@
     managerFilePatterns: ["\\.yaml(?:\\.j2)?$"]
   }
 }
-
