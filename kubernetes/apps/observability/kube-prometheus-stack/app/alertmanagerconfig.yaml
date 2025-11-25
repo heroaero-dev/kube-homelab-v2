@@ -2,6 +2,7 @@ apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
   name: alertmanager
+  namespace: observability
 spec:
   route:
     receiver: pushover
@@ -25,7 +26,7 @@ spec:
           userKey:
             name: alertmanager-pushover
             key: PUSHOVER_USER_KEY
-          priority: 1
+          priority: "1"                     # <-- FIXED (must be string)
           sendResolved: true
           title: >-
             [{{ .Status | toUpper }}] {{ .CommonLabels.alertname }}
