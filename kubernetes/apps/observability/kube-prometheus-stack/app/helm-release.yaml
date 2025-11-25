@@ -61,3 +61,35 @@ spec:
           - secretName: grafana-tls
             hosts:
               - graf.heroaero.info
+    additionalPrometheusRulesMap:
+      blackbox-rules:
+        groups:
+          - name: blackbox-exporter.rules
+            rules:
+              - alert: BlackboxProbeFailed
+                expr: probe_success == 0
+                for: 1m
+                labels:
+                  severity: critical
+                annotations:
+                  summary: "Blackbox probe failed for {{ $labels.instance }}"
+                  description: "Probe to {{ $labels.instance }} failed."
+
+              - alert: BlackboxHighLatency
+                expr: probe_duration_seconds > 1
+                for: 2m
+                labels:
+                  severity: warning
+                annotations:
+                  summary: "Blackbox probe latency high"
+                  description: "Probe to {{ $labels.instance }} is slow ({{ $value }} seconds)."
+
+              - alert: BlackboxBadStatus
+                expr: probe_http_status_code != 200
+                for: 1m
+                labels:
+                  severity: critical
+                annotations:
+                  summary: "Blackbox bad HTTP status"
+                  description: "Target {{ $labels.instance }} returned {{ $value }} instead of 200."
+
