@@ -18,6 +18,11 @@ spec:
       containers:
         - name: jellyfin
           image: linuxserver/jellyfin:nightly-version-2025112405ubu2404
+          resources:
+            requests:
+              ephemeral-storage: "200Mi"
+            limits:
+              ephemeral-storage: "500Mi"
           env:
             - name: PUID
               value: "1000"         

@@ -23,6 +23,11 @@ spec:
         name: mealie
           # securityContext:
           #allowPrivilegeEscalation: false
+        resources:
+            requests:
+              ephemeral-storage: "200Mi"
+            limits:
+              ephemeral-storage: "500Mi"
         ports:
           - containerPort: 9000
         env:

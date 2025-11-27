@@ -7,5 +7,7 @@ spec:
   selector:
     app: mealie
   ports:
-    - port: 9001
-      targetPort: 9000
+    - name: http
+      port: 9001
+      targetPort: http
+
