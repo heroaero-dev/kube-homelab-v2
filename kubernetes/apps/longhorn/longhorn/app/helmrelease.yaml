@@ -12,8 +12,8 @@ spec:
         name: longhorn-repo
       version: v1.9.0
   interval: 10m0s
-values:
-  resources:
+  values:
+    resources:
       requests:
         cpu: "50m"
         memory: "128Mi"
@@ -22,3 +22,52 @@ values:
         cpu: "500m"
         memory: "512Mi"
         ephemeral-storage: "1Gi"
+
+    # Manager
+    longhornManager:
+      resources:
+        requests:
+          cpu: "50m"
+          memory: "128Mi"
+          ephemeral-storage: "512Mi"
+        limits:
+          cpu: "500m"
+          memory: "512Mi"
+          ephemeral-storage: "1Gi"
+
+    # UI
+    longhornUI:
+      resources:
+        requests:
+          cpu: "20m"
+          memory: "64Mi"
+          ephemeral-storage: "256Mi"
+        limits:
+          cpu: "200m"
+          memory: "256Mi"
+          ephemeral-storage: "512Mi"
+
+    # Driver + engine
+    longhornDriver:
+      resources:
+        requests:
+          cpu: "50m"
+          memory: "128Mi"
+          ephemeral-storage: "512Mi"
+        limits:
+          cpu: "500m"
+          memory: "256Mi"
+          ephemeral-storage: "1Gi"
+
+    # Admission Webhook (this is the one failing for you)
+    admissionWebhook:
+      resources:
+        requests:
+          cpu: "30m"
+          memory: "64Mi"
+          ephemeral-storage: "128Mi"
+        limits:
+          cpu: "200m"
+          memory: "128Mi"
+          ephemeral-storage: "512Mi"
+
