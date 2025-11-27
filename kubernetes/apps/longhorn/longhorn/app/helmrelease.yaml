@@ -12,3 +12,13 @@ spec:
         name: longhorn-repo
       version: v1.9.0
   interval: 10m0s
+values:
+  resources:
+      requests:
+        cpu: "50m"
+        memory: "128Mi"
+        ephemeral-storage: "512Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+        ephemeral-storage: "1Gi"
