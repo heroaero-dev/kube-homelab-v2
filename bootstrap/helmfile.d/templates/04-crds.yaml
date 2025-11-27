@@ -1,0 +1,15 @@
+helmDefaults:
+  wait: true
+  timeout: 300
+
+repositories:
+  - name: cilium
+    url: https://helm.cilium.io/
+
+releases:
+  - name: cilium
+    namespace: kube-system
+    chart: cilium/cilium
+    version: 1.19.0-pre.2
+    installed: true
+    values: []

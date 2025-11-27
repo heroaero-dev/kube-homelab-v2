@@ -71,7 +71,7 @@ data:
       - hostname: plex.heroaero.dev
         service: http://plex.default.svc.cluster.local:32400
       - hostname: mealie.heroaero.dev
-        service: http://traefik.kube-system.svc.cluster.local:80
+        service: http://mealie.default.svc.cluster.local:9001
       - hostname: heroaero.dev
         service: http://traefik.kube-system.svc.cluster.local:80
       - hostname: graf.heroaero.info
