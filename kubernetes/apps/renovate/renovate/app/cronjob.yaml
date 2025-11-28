@@ -12,15 +12,6 @@ spec:
           containers:
             - name: renovate
               image: renovate/renovate:latest
-              resources:
-                requests:
-                  cpu: "30m"
-                  memory: "64Mi"
-                  ephemeral-storage: "128Mi"
-                limits:
-                  cpu: "200m"
-                  memory: "128Mi"
-                  ephemeral-storage: "512Mi"
                 args:
                 - heroaero-dev/kube-homelab-v2
 
