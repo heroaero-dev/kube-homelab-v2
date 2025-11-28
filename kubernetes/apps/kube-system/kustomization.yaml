@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - ./namespace.yaml
+  - ./cilium/ks.yaml
   - ./ci-access/ks.yaml
   - ./reloader/ks.yaml
