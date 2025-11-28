@@ -3,71 +3,97 @@ kind: HelmRelease
 metadata:
   name: longhorn-release
 spec:
+  interval: 10m
   chart:
     spec:
       chart: longhorn
-      reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
         name: longhorn-repo
-      version: v1.9.0
-  interval: 10m0s
+      version: 1.9.0
   values:
-    resources:
-      requests:
-        cpu: "50m"
-        memory: "128Mi"
-        ephemeral-storage: "512Mi"
-      limits:
-        cpu: "500m"
-        memory: "512Mi"
-        ephemeral-storage: "1Gi"
-
-    # Manager
     longhornManager:
+      nodeSelector:
+        role: storage
       resources:
         requests:
-          cpu: "50m"
-          memory: "128Mi"
-          ephemeral-storage: "512Mi"
+          cpu: 50m
+          memory: 128Mi
+          ephemeral-storage: 512Mi
         limits:
-          cpu: "500m"
-          memory: "512Mi"
-          ephemeral-storage: "1Gi"
-
-    # UI
+          cpu: 300m
+          memory: 256Mi
+          ephemeral-storage: 1Gi
     longhornUI:
+      nodeSelector:
+        role: storage
       resources:
         requests:
-          cpu: "20m"
-          memory: "64Mi"
-          ephemeral-storage: "256Mi"
+          cpu: 20m
+          memory: 64Mi
+          ephemeral-storage: 128Mi
         limits:
-          cpu: "200m"
-          memory: "256Mi"
-          ephemeral-storage: "512Mi"
-
-    # Driver + engine
+          cpu: 200m
+          memory: 128Mi
+          ephemeral-storage: 256Mi
+    longhornAdmissionWebhook:
+      nodeSelector:
+        role: storage
+      resources:
+        requests:
+          cpu: 20m
+          memory: 64Mi
+          ephemeral-storage: 128Mi
+        limits:
+          cpu: 200m
+          memory: 128Mi
+          ephemeral-storage: 256Mi
     longhornDriver:
+      nodeSelector:
+        role: storage
       resources:
         requests:
-          cpu: "50m"
-          memory: "128Mi"
-          ephemeral-storage: "512Mi"
+          cpu: 50m
+          memory: 128Mi
+          ephemeral-storage: 256Mi
         limits:
-          cpu: "500m"
-          memory: "256Mi"
-          ephemeral-storage: "1Gi"
+          cpu: 300m
+          memory: 256Mi
+          ephemeral-storage: 512Mi
+    csi:
+      attacher:
+        nodeSelector:
+          role: storage
+        resources:
+          requests:
+            cpu: 20m
+            memory: 64Mi
+            ephemeral-storage: 128Mi
 
-    # Admission Webhook (this is the one failing for you)
-    admissionWebhook:
-      resources:
-        requests:
-          cpu: "30m"
-          memory: "64Mi"
-          ephemeral-storage: "128Mi"
-        limits:
-          cpu: "200m"
-          memory: "128Mi"
-          ephemeral-storage: "512Mi"
+      provisioner:
+        nodeSelector:
+          role: storage
+        resources:
+          requests:
+            cpu: 20m
+            memory: 64Mi
+            ephemeral-storage: 128Mi
+
+      resizer:
+        nodeSelector:
+          role: storage
+        resources:
+          requests:
+            cpu: 20m
+            memory: 64Mi
+            ephemeral-storage: 128Mi
+
+      snapshotter:
+        nodeSelector:
+          role: storage
+        resources:
+          requests:
+            cpu: 20m
+            memory: 64Mi
+            ephemeral-storage: 128Mi
 
