@@ -1,0 +1,32 @@
+helmDefaults:
+  wait: true
+  timeout: 300
+
+repositories:
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
+
+releases:
+  - name: prometheus-operator-crds
+    namespace: observability
+    chart: prometheus-community/kube-prometheus-stack
+    version: "57.2.0"   # match your stack version
+    installed: true
+
+    # IMPORTANT: Only CRDs, nothing else
+    values:
+      - prometheusOperator:
+          enabled: false
+        kubeStateMetrics:
+          enabled: false
+        nodeExporter:
+          enabled: false
+        grafana:
+          enabled: false
+        alertmanager:
+          enabled: false
+        prometheus:
+          enabled: false
+        crds:
+          create: true
+
