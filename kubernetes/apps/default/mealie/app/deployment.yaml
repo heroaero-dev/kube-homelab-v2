@@ -39,10 +39,10 @@ spec:
             value: "911"
           - name: SECURITY_USER_LOCKOUT_TIME
             value: "24"
-        volumeMounts:
-          - mountPath: /app/data
-            name: mealie
-      volumes:
-        - name: mealie
-          persistentVolumeClaim:
-            claimName: mealie
+              #volumeMounts:
+              #- mountPath: /app/data
+              #name: mealie
+              #volumes:
+              #- name: mealie
+              #persistentVolumeClaim:
+              #claimName: mealie

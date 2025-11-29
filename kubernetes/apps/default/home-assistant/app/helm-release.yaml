@@ -42,18 +42,18 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-
-    persistence:
-      config:
-        existingClaim: "{{ .Release.Name }}"
-        globalMounts:
-          - path: /config
-
-      config-cache:
-        existingClaim: "{{ .Release.Name }}-cache"
-        globalMounts:
-          - path: /config/.venv
-
-      tmp:
-        type: emptyDir
-
+                  #
+                  #persistence:
+                  #config:
+                  #existingClaim: "{{ .Release.Name }}"
+                  #globalMounts:
+                  #- path: /config
+                  #
+                  #config-cache:
+                  #existingClaim: "{{ .Release.Name }}-cache"
+                  #globalMounts:
+                  #- path: /config/.venv
+                  #
+                  #tmp:
+                  #type: emptyDir
+                  #

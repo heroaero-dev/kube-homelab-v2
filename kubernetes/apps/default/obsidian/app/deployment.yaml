@@ -26,10 +26,10 @@ spec:
               value: "1000"
             - name: TZ
               value: "America/Los_Angeles"
-          volumeMounts:
-            - name: obsidian
-              mountPath: /config
-      volumes:
-        - name: obsidian
-          persistentVolumeClaim:
-            claimName: obsidian
+                #volumeMounts:
+                #- name: obsidian
+                #mountPath: /config
+                #volumes:
+                #- name: obsidian
+                #persistentVolumeClaim:
+                #claimName: obsidian
