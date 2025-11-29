@@ -1,0 +1,18 @@
+helmDefaults:
+  wait: true
+  timeout: 300
+
+repositories:
+  - name: metallb
+    url: https://metallb.github.io/metallb
+
+releases:
+  - name: metallb
+    namespace: metallb-system
+    chart: metallb/metallb
+    version: 0.14.5
+    installed: true
+    values:
+      - crds:
+          enabled: true
+
