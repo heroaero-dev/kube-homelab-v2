@@ -67,23 +67,23 @@ data:
   config.yaml: |
     ingress:
       - hostname: link.heroaero.dev
-        service: http://traefik.kube-system.svc.cluster.local:80
+        service: http://traefik.traefik.svc.cluster.local:80
       - hostname: plex.heroaero.dev
         service: http://plex.default.svc.cluster.local:32400
       - hostname: mealie.heroaero.dev
         service: http://mealie.default.svc.cluster.local:9001
       - hostname: heroaero.dev
-        service: http://traefik.kube-system.svc.cluster.local:80
+        service: http://traefik.traefik.svc.cluster.local:80
       - hostname: graf.heroaero.info
-        service: http://traefik.kube-system.svc.cluster.local:80
+        service: http://traefik.traefik.svc.cluster.local:80
       - hostname: ranch.heroaero.dev
-        service: http://traefik.kube-system.svc.cluster.local:80
+        service: http://traefik.traefik.svc.cluster.local:80
       - hostname: port.heroaero.dev
-        service: http://traefik.kube-system.svc.cluster.local:80     
+        service: http://traefik.traefik.svc.cluster.local:80     
       - hostname: md.heroaero.dev
-        service: http://traefik.kube-system.svc.cluster.local:80
+        service: http://traefik.traefik.svc.cluster.local:80
       - hostname: vault.heroaero.dev
         service: http://10.6.6.116:8089
       - hostname: jelly.heroaero.dev
-        service: http://traefik.kube-system.svc.cluster.local:80     
+        service: http://traefik.traefik.svc.cluster.local:80     
       - service: http_status:404
