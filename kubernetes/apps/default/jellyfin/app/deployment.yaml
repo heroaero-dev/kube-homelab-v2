@@ -33,16 +33,15 @@ spec:
           ports:
             - name: http
               containerPort: 8096
-#           volumeMounts:
-#             - name: config
-#               mountPath: /config
-#             - name: media
-#               mountPath: /data       
-#       volumes:
-#         - name: config
-#           persistentVolumeClaim:
-#             claimName: jellyfin-config
-#         - name: media
-#           persistentVolumeClaim:
-#             claimName: plex-tv-pvc   # <-- reuse your existing media PVC
-# 
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: media
+              mountPath: /data       
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: jellyfin-config
+        - name: media
+          persistentVolumeClaim:
+            claimName: jellyfin-tv   

@@ -23,13 +23,13 @@ spec:
             allowPrivilegeEscalation: False
           ports:
             - containerPort: 9090
-              #volumeMounts:
-              #- mountPath: /etc/linkding/data
-              #name: linkding
+          volumeMounts:
+            - mountPath: /etc/linkding/data
+              name: linkding
           envFrom:
             - secretRef:
                 name: linkding
-                  #volumes:
-                  #- name: linkding
-                  #persistentVolumeClaim:
-                  #claimName: linkding
+      volumes:
+        - name: linkding
+          persistentVolumeClaim:
+            claimName: linkding
