@@ -19,8 +19,6 @@ spec:
       hostRoot: /sys/fs/cgroup
     dashboards:
       enabled: true
-    ipam:
-      mode: kubernetes
     hubble:
       enabled: false   # can turn on later
     # IMPORTANT: update these two
