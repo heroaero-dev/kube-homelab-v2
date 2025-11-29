@@ -10,7 +10,7 @@ releases:
   - name: prometheus-operator-crds
     namespace: observability
     chart: prometheus-community/kube-prometheus-stack
-    version: "57.2.0"   # match your stack version
+    version: "57.2.1"   # match your stack version
     installed: true
 
     # IMPORTANT: Only CRDs, nothing else
