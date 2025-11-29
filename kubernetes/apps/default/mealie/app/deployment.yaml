@@ -41,7 +41,7 @@ spec:
             value: "24"
         volumeMounts:
           - mountPath: /app/data
-              name: mealie
+            name: mealie
       volumes:
         - name: mealie
           persistentVolumeClaim:
