@@ -1,0 +1,30 @@
+{
+    "apiVersion": "apiregistration.k8s.io/v1",
+    "kind": "APIService",
+    "metadata": {
+        "creationTimestamp": "2025-11-29T18:45:45Z",
+        "labels": {
+            "kube-aggregator.kubernetes.io/automanaged": "true"
+        },
+        "name": "v1beta2.longhorn.io",
+        "resourceVersion": "131754",
+        "uid": "bd658d72-4245-4abc-8b2a-04a20c35f750"
+    },
+    "spec": {
+        "group": "longhorn.io",
+        "groupPriorityMinimum": 1000,
+        "version": "v1beta2",
+        "versionPriority": 100
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2025-11-29T18:45:45Z",
+                "message": "Local APIServices are always available",
+                "reason": "Local",
+                "status": "True",
+                "type": "Available"
+            }
+        ]
+    }
+}
