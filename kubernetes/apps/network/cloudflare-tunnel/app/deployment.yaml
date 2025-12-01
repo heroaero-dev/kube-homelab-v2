@@ -68,10 +68,8 @@ data:
     ingress:
       - hostname: link.heroaero.dev
         service: http://traefik.traefik.svc.cluster.local:80
-      - hostname: plex.heroaero.dev
-        service: http://plex.default.svc.cluster.local:32400
       - hostname: mealie.heroaero.dev
-        service: http://mealie.default.svc.cluster.local:9001
+        service: http://traefik.traefik.svc.cluster.local:80
       - hostname: heroaero.dev
         service: http://traefik.traefik.svc.cluster.local:80
       - hostname: graf.heroaero.info
