@@ -12,6 +12,9 @@ spec:
         name: longhorn-repo
       version: 1.10.1
   values:
+    defaultSettings:
+      createDefaultDiskLabeledNodes: true
+      defaultDataPath: "/mnt/longhorn"
     longhornManager:
       nodeSelector:
         role: storage
