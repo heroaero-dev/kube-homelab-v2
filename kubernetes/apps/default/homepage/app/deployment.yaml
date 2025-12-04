@@ -33,13 +33,13 @@ spec:
               value: "heroaero.dev,www.heroaero.dev,localhost,127.0.0.1"
           resources:
             requests:
-              cpu: 25m
-              memory: 64Mi
-              ephemeral-storage: "200Mi"     # <── ADD THIS
+              cpu: 75m
+              memory: 192Mi
+              ephemeral-storage: 200Mi    
             limits:
-              cpu: 200m
-              memory: 256Mi
-              ephemeral-storage: "500Mi"     # <── ADD THIS
+              cpu: 400m
+              memory: 512Mi
+              ephemeral-storage: 500Mi
           ports:
             - containerPort: 3000
               name: http
