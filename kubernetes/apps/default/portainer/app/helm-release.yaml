@@ -10,7 +10,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: portainer
-      version: 2.33.3
+      version: 2.33.5
   interval: 10m0s
   values:
     service:
@@ -19,6 +19,10 @@ spec:
     ingress:
       enabled: true
       ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
       hosts:
         - host: port.heroaero.dev
           paths:
@@ -28,12 +32,8 @@ spec:
         - hosts:
             - port.heroaero.dev
           secretName: portainer-tls
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
     persistence:
       enabled: true
-      existingClaim: portainer
       size: 10Gi
       storageClass: longhorn
       accessMode: ReadWriteOnce
-          
