@@ -18,7 +18,7 @@ spec:
     hostname: ranch.heroaero.dev
     ingress:
       enabled: true
-      ingressClassName: ""
+      ingressClassName: traefik
       extraAnnotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
