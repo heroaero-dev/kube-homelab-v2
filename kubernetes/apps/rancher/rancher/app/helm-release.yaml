@@ -18,15 +18,14 @@ spec:
     hostname: ranch.heroaero.dev
     ingress:
       enabled: true
-      ingressClassName: traefik
-      path: /
-      pathType: Prefix
-      servicePort: 80
+      ingressClassName: ""
       extraAnnotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
+      pathType: ImplementationSpecific
+      path: "/"
+      servicePort: 80
       tls:
-        source: secret
-        secretName: rancher-tls
-
+        source: rancher
+        secretName: tls-rancher-ingress
