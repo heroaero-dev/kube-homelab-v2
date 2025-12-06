@@ -27,5 +27,5 @@ spec:
       path: "/"
       servicePort: 80
       tls:
-        source: rancher
+        source: letsencrypt
         secretName: tls-rancher-ingress
