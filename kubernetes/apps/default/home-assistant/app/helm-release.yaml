@@ -13,6 +13,7 @@ spec:
       home-assistant:
         annotations:
           reloader.stakater.com/auto: "true"
+        replicas: 3
         containers:
           app:
             image:
